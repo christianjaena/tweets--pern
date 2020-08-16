@@ -1,0 +1,6 @@
+-- CREATE DATABASE twitterpern;
+
+CREATE TABLE tweets(
+	id SERIAL PRIMARY KEY,
+	tweet VARCHAR(255)
+); 
