@@ -7,16 +7,18 @@ const InputTweet = () => {
 	return (
 		<>
 			<div className='d-flex'>
-				<input
-					type='text'
+				<textarea
 					className='form-control'
+					value={input}
 					onChange={e => setInput(e.target.value)}
-				/>
+					style={{ resize: 'none' }}
+				></textarea>
 				<button
 					className='btn btn-primary'
 					onClick={e => {
 						e.preventDefault();
 						addTweet(input);
+						setInput('');
 					}}
 				>
 					Tweet!
