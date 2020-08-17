@@ -12,7 +12,13 @@ const InputTweet = () => {
 					className='form-control'
 					onChange={e => setInput(e.target.value)}
 				/>
-				<button className='btn btn-primary' onClick={() => addTweet(input)}>
+				<button
+					className='btn btn-primary'
+					onClick={e => {
+						e.preventDefault();
+						addTweet(input);
+					}}
+				>
 					Tweet!
 				</button>
 			</div>

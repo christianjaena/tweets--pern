@@ -2,12 +2,11 @@ const express = require('express');
 const app = express();
 const pool = require('./dbConnection');
 const cors = require('cors');
-const PORT = process.env.PORT || 5000; 
+const PORT = process.env.PORT || 5000;
 
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'));
-}
- else {
+} else {
 	const morgan = require('morgan');
 	app.use(morgan('dev'));
 }
@@ -30,7 +29,7 @@ app.post('/tweet', async (req, res) => {
 
 app.get('/tweets', async (req, res) => {
 	try {
-		const getTweets = await pool.query('SELECT * FROM tweets');
+		const getTweets = await pool.query('SELECT * FROM tweets ORDER BY id DESC');
 		res.json(getTweets.rows);
 	} catch (err) {
 		console.log(err.message);
@@ -78,7 +77,7 @@ app.delete('/tweet/:id', async (req, res) => {
 
 app.get('*', (req, res) => {
 	res.redirect('/');
-})
+});
 
 app.listen(PORT, () => {
 	console.log(`Server listening to port ${PORT}`);
